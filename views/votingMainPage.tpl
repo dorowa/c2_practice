@@ -14,7 +14,7 @@
                     <h5 class="col-12">Голоcование - радио кнопками</h5>
                     <form action="/results/" method="POST" style="text-align: center;">
                             <label for="id_cats">Кошка:</label>
-                            <input name="survey" type="radio" id="id_cats" value="cats">
+                            <input name="survey" type="radio" id="id_cats" value="cats" checked>
                         
                             <label for="id_dogs">Собака:</label>
                             <input name="survey" type="radio" id="id_dogs" value="dogs">
