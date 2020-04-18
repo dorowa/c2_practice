@@ -23,11 +23,11 @@ def static_images(filename):
     return static_file(filename, root='./assets/images')
 
 @app.route('/css/<filename>')
-def static_images(filename):
+def static_css(filename):
     return static_file(filename, root='./assets/css')
 
 @app.route('/src/<filename>')
-def static_images(filename):
+def static_src(filename):
     return static_file(filename, root='./assets/src')
 
 @app.get('/')
