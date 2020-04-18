@@ -22,7 +22,7 @@ app = createApp()
 @app.get('/')
 def get_main():
     """выводим страничку голосования"""
-    return template("votingMainPage.tpl")
+    return template("votingMainPage.tpl", protocol = 'http', host = app.config.host, port = app.config.port)
 
 @app.get('/results/')
 def get_results():

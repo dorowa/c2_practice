@@ -3,6 +3,11 @@
         <meta charset="utf-8">
         <title>Global survey</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            input {
+                border-radius: 5px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -26,24 +31,47 @@
                 </div>
                 <div class="col-6 m-0 p-1 d-flex flex-wrap align-items-center justify-content-center" style="background-color: yellow; color: blue; border-radius: 0 0 20px 20px; border-style: solid; border-color: black; text-align: center;">
                     <h5 class="col-12">Голосование - обычные кнопки</h5>
-                    <form action="/sse/vote/cats" method="POST">
-                        <div class="col-12 p-1" style="text-align: right;">
-                            <label for="id_cats_button">Кошка:</label>
-                            <input value="Мяу!!!" type="submit" id="id_cats_button"></div>
-                    </form>
-                    <form action="/sse/vote/dogs" method="POST">
-                        <div class="col-12 p-1" style="text-align: right;">
-                            <label for="id_dogs_button">Пес:</label>
-                            <input value="Гав!!!" type="submit" id="id_dogs_button"></div>
-                    </form>
-                    <form action="/sse/vote/parrots" method="POST">
-                        <div class="col-12 p-1" style="text-align: right;">
-                            <label for="id_parrots_button">Попугай:</label>
-                            <input value="Ррома!" type="submit" id="id_parrots_button"/></div>
-                    </form>
+                    <div class="col-12 p-1">
+                        <label for="id_cats_button">Кошка:</label>
+                        <input value="Мяу!!!" type="submit" id="id_cats_button">
+                    </div>
+
+                    <div class="col-12 p-1">
+                        <label for="id_dogs_button">Песик:</label>
+                        <input value="Гав!!!" type="submit" id="id_dogs_button">
+                    </div>                        
+                        
+                    <div class="col-12 p-1">
+                        <label for="id_parrots_button">Попугай:</label>
+                        <input value="Ррома!" type="submit" id="id_parrots_button"/>
+                    </div>                    
                 </div>
 
             </div>
         </div>
+    <script>
+        const vote = async function(URI) {
+            let promise = await fetch(URI, { method: 'POST', headers: Headers });
+            if (!promise.ok) {
+                alert('Ошибка связи с сервером!')
+            }
+            location.href = '/results/';
+        }
+        const cats = document.querySelector('#id_cats_button');
+        const dogs = document.querySelector('#id_dogs_button');
+        const parrots = document.querySelector('#id_parrots_button');
+
+        const catsURL = new URL('{{protocol}}://{{host}}:{{port}}/sse/vote/cats');
+        const dogsURL = new URL('{{protocol}}://{{host}}:{{port}}/sse/vote/dogs');
+        const parrotsURL = new URL('{{protocol}}://{{host}}:{{port}}/sse/vote/parrots');
+
+        const header = new Headers({
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*'
+        })
+        cats.addEventListener('click', () => vote(catsURL));
+        dogs.addEventListener('click', () => vote(dogsURL));
+        parrots.addEventListener('click', () => vote(parrotsURL));
+    </script>
     </body>
 </html>
