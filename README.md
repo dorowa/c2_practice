@@ -25,7 +25,7 @@ module c2 practice<br>
      |      |- server.py - модуль для функционала работы сервера, обработка и маршрутизация запросов<br>
      |<br>
      |------/views<br>
-            |- votingMainPage.tpl - шаблон основной страницы, кнопки, radio и проч (внутри html, bootstrap)<br>
+            |- votingMainPage.tpl - шаблон основной страницы, кнопки, radio и проч (внутри html и js, bootstrap)<br>
             |- votingMainResults.tpl - шаблон страницы с результатами, прогрессбары и SSE (внутри html и js, bootstrap)<br>
 <br>
 --------------------------------------------СИСТЕМНЫЕ ТРЕБОВАНИЯ<br>
