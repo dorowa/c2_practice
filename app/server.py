@@ -17,7 +17,7 @@ def createApp():
     return app
 
 app = createApp()
-
+#статические файлы - катринки, стили и скрипты, привязка ссылок к реальному пути на диске
 @app.route('/images/<filename>')
 def static_images(filename):
     return static_file(filename, root='./assets/images')
