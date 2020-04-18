@@ -1,7 +1,7 @@
 import time as t
 import bottle
 from bottle import request, response, template, redirect
-from bottle import HTTPError
+from bottle import HTTPError, static_file
 from app import db
 
 # "sqlite:///my_db.sqlite"
@@ -18,6 +18,17 @@ def createApp():
 
 app = createApp()
 
+@app.route('/images/<filename>')
+def static_images(filename):
+    return static_file(filename, root='./assets/images')
+
+@app.route('/css/<filename>')
+def static_images(filename):
+    return static_file(filename, root='./assets/css')
+
+@app.route('/src/<filename>')
+def static_images(filename):
+    return static_file(filename, root='./assets/src')
 
 @app.get('/')
 def get_main():
@@ -27,7 +38,7 @@ def get_main():
 @app.get('/results/')
 def get_results():
     '''выводим страничку с результатами'''
-    return template("votingMainResults.tpl", port = app.config.port)
+    return template("votingMainResults.tpl", protocol = 'http', host = app.config.host, port = app.config.port)
     #передаем порт, который взяли в конфиге, вдруг сменили значение по умолчанию
     #return HTTPError(500, "Все збс, но шаблона пока нет")
 
